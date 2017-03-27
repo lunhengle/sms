@@ -38,7 +38,7 @@ public class Archives {
     /**
      * 等级 1 不合格 2 合格 3 良好 4 优秀.
      */
-    private int level;
+    private int levels;
     /**
      * 创建时间.
      */
@@ -100,12 +100,12 @@ public class Archives {
         this.comments = comments;
     }
 
-    public int getLevel() {
-        return level;
+    public int getLevels() {
+        return levels;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setLevels(int levels) {
+        this.levels = levels;
     }
 
     public Date getCreated() {

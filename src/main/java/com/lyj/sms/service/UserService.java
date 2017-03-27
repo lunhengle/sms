@@ -32,9 +32,9 @@ public interface UserService {
     void removeUser(final long id);
 
     /**
-     * 根据个人名或者手机号获取个人.
+     * 根据个人名获取个人.
      *
-     * @param name      个人名
+     * @param name 个人名
      * @return 个人列表
      */
     List<User> getUserList(final String name);

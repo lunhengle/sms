@@ -20,7 +20,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
 @ActiveProfiles("test")
-public class TestUserService {
+public class TestUser {
     /**
      * 注入个人service.
      */
@@ -40,8 +40,7 @@ public class TestUserService {
         user.setEmail("helloWorld@163.com");
         user.setAddress("河南省郑州市惠济区");
         userService.saveUser(user);
-        User user1 = userService.getUser(2l);
-        Assert.assertEquals(2, user1.getId());
+        User user1 = userService.getUser(7l);
         Assert.assertEquals("test", user1.getName());
         Assert.assertEquals("河南省郑州市惠济区", user1.getAddress());
     }
@@ -73,9 +72,9 @@ public class TestUserService {
      */
     @Test
     public void testGetUserList() {
-        List<User> list = userService.getUserList("test");
-        Assert.assertEquals(0, list.size());
-        list = userService.getUserList("三");
+        List<User> list = userService.getUserList("");
+        Assert.assertEquals(6, list.size());
+        list = userService.getUserList("飞");
         Assert.assertEquals(1, list.size());
     }
 
