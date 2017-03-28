@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 成绩service实现类.
- * Created by lunhengle on 2017/3/23.
+ * Created by lunyujie on 2017/3/23.
  */
 @Service
 public class AchievementServiceImpl implements AchievementService {
@@ -27,7 +27,7 @@ public class AchievementServiceImpl implements AchievementService {
      * @return 成绩
      */
     @Override
-    public Achievement getAchievement(long id) {
+    public Achievement getAchievement(Long id) {
         return achievementDao.getAchievement(id);
     }
 
@@ -47,7 +47,7 @@ public class AchievementServiceImpl implements AchievementService {
      * @param id id
      */
     @Override
-    public void removeAchievement(long id) {
+    public void removeAchievement(Long id) {
         achievementDao.removeAchievement(id);
     }
 

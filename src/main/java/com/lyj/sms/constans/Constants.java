@@ -1,4 +1,7 @@
-package com.lyj.sms.common;
+package com.lyj.sms.constans;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 常量类.
@@ -50,5 +53,19 @@ public enum Constants {
      */
     public int getValue() {
         return value;
+    }
+
+    /**
+     * 组织等级.
+     *
+     * @return 等级map
+     */
+    public static Map<Integer, String> getMapLevels() {
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        map.put(LEVEL_UNQUALIFIED.value, "不合格");
+        map.put(LEVEL_QUALIFIED.value, "合格");
+        map.put(LEVEL_GOOD.value, "良好");
+        map.put(LEVEL_BEST.value, "优秀");
+        return map;
     }
 }

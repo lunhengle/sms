@@ -31,7 +31,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      * @return 档案
      */
     @Override
-    public Archives getArchives(long id) {
+    public Archives getArchives(Long id) {
         if (this.getArchivesCount(id)) {
             final String sql = "SELECT * FROM ARCHIVES WHERE ID = ?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<Archives>() {
@@ -50,7 +50,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      * @param id id
      * @return true 存在 false 不存在
      */
-    private boolean getArchivesCount(final long id) {
+    private boolean getArchivesCount(final Long id) {
         boolean isTrue = true;
         final String sqlCount = "SELECT COUNT(1) FROM ARCHIVES WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sqlCount, new Object[]{id}, Integer.class);
@@ -68,7 +68,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      */
     @Override
     public void saveArchives(Archives archives) {
-        if (archives.getId() != 0) { //更新
+        if (null!=archives.getId()) { //更新
             final String sql = "UPDATE ARCHIVES SET COMMENTS = ?,GRADE = ?,LEVELS = ?,SCHOOL_ADDRESS = ?, SCHOOL_NAME = ?,TEACHER=? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{archives.getComments(), archives.getGrade(), archives.getLevels(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getId()});
         } else { //插入
@@ -85,7 +85,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      * @param id id
      */
     @Override
-    public void removeArchives(long id) {
+    public void removeArchives(Long id) {
         final String sql = "DELETE FROM ARCHIVES WHERE ID = ?";
         jdbcTemplate.update(sql, new Object[]{id});
     }

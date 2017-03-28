@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 测试档案.
- * Created by lunhengle on 2017/3/27.
+ * Created by lunyujie on 2017/3/27.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -32,8 +32,9 @@ public class TestArchives {
      */
     @Test
     public void testGetArchives() {
-        Archives archives = archivesService.getArchives(1l);
-        Assert.assertEquals(1l, archives.getId());
+        Archives archives = archivesService.getArchives(1L);
+        Long l=1L;
+        Assert.assertEquals(l, archives.getId());
     }
 
     /**
@@ -53,7 +54,7 @@ public class TestArchives {
     @Test
     public void testSaveArchives() {
         Archives archives = new Archives();
-        archives.setUserId(4);
+        archives.setUserId(4L);
         archives.setTeacher("赵老师");
         archives.setLevels(1);
         archives.setSchoolName("郑州十一中");
@@ -61,7 +62,7 @@ public class TestArchives {
         archives.setGrade("一年级");
         archives.setSchoolAddress("郑州二七区");
         archivesService.saveArchives(archives);
-        Archives archives1 = archivesService.getArchives(10l);
+        Archives archives1 = archivesService.getArchives(10L);
         Assert.assertEquals("郑州十一中", archives1.getSchoolName());
     }
 
@@ -70,10 +71,10 @@ public class TestArchives {
      */
     @Test
     public void testUpdateArchives() {
-        Archives archives = archivesService.getArchives(1l);
+        Archives archives = archivesService.getArchives(1L);
         archives.setSchoolAddress("北京海淀区");
         archivesService.saveArchives(archives);
-        Archives archives1 = archivesService.getArchives(1l);
+        Archives archives1 = archivesService.getArchives(1L);
         Assert.assertEquals("北京海淀区", archives1.getSchoolAddress());
     }
 
@@ -82,8 +83,8 @@ public class TestArchives {
      */
     @Test
     public void testRemoveArchives() {
-        archivesService.removeArchives(1l);
-        Archives archives = archivesService.getArchives(1l);
+        archivesService.removeArchives(1L);
+        Archives archives = archivesService.getArchives(1L);
         Assert.assertNull(archives);
     }
 }

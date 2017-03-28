@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 成绩测试.
- * Created by lunhengle on 2017/3/27.
+ * Created by lunyujie on 2017/3/27.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -32,8 +32,9 @@ public class TestAchievement {
      */
     @Test
     public void testGetAchievement() {
-        Achievement achievement = achievementService.getAchievement(1);
-        Assert.assertEquals(1, achievement.getId());
+        Achievement achievement = achievementService.getAchievement(1L);
+        Long l = 1L;
+        Assert.assertEquals(l, achievement.getId());
     }
 
     /**
@@ -57,10 +58,11 @@ public class TestAchievement {
         achievement.setSchoolYear("第二学年");
         achievement.setAchievement(100);
         achievement.setLevels(1);
-        achievement.setUserId(1);
+        achievement.setUserId(1L);
         achievementService.saveAchievement(achievement);
-        Achievement achievement1 = achievementService.getAchievement(16l);
-        Assert.assertEquals(16, achievement1.getId());
+        Achievement achievement1 = achievementService.getAchievement(16L);
+        Long l = 16L;
+        Assert.assertEquals(l, achievement1.getId());
     }
 
     /**
@@ -68,10 +70,10 @@ public class TestAchievement {
      */
     @Test
     public void testUpdateAchievement() {
-        Achievement achievement = achievementService.getAchievement(1l);
+        Achievement achievement = achievementService.getAchievement(1L);
         achievement.setSchoolYear("第二学年");
         achievementService.saveAchievement(achievement);
-        Achievement achievement1 = achievementService.getAchievement(1l);
+        Achievement achievement1 = achievementService.getAchievement(1L);
         Assert.assertEquals("第二学年", achievement1.getSchoolYear());
     }
 
@@ -80,8 +82,8 @@ public class TestAchievement {
      */
     @Test
     public void testRemoveAchievement() {
-        achievementService.removeAchievement(1l);
-        Achievement achievement = achievementService.getAchievement(1l);
+        achievementService.removeAchievement(1L);
+        Achievement achievement = achievementService.getAchievement(1L);
         Assert.assertNull(achievement);
     }
 }

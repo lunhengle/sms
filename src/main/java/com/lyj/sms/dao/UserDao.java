@@ -15,7 +15,7 @@ public interface UserDao {
      * @param id 个人id
      * @return 个人
      */
-    User getUser(final long id);
+    User getUser(final Long id);
 
     /**
      * 保存个人.
@@ -29,7 +29,7 @@ public interface UserDao {
      *
      * @param id id
      */
-    void removeUser(final long id);
+    void removeUser(final Long id);
 
     /**
      * 根据个人名或者手机号获取个人.

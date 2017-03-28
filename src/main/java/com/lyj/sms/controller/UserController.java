@@ -36,7 +36,7 @@ public class UserController {
     public String getListUser(@RequestParam(value = "name", required = false) String name, ModelMap modelMap) {
         List list = userService.getUserList(name);
         modelMap.put("list", list);
-        return "users/listUser";
+        return "users/listUserPage";
     }
 
     /**
@@ -47,12 +47,12 @@ public class UserController {
      * @return 跳转到编辑个人界面
      */
     @RequestMapping(value = "/editUser", method = RequestMethod.GET)
-    public String editUser(@RequestParam(value = "id", required = false) Integer id, ModelMap modelMap) {
+    public String editUser(@RequestParam(value = "id", required = false) Long id, ModelMap modelMap) {
         if (null != id) {
             User user = userService.getUser(id);
             modelMap.put("user", user);
         }
-        return "users/editUser";
+        return "users/editUserPage";
     }
 
     /**
@@ -74,7 +74,7 @@ public class UserController {
      * @return 跳转到个人列表页面
      */
     @RequestMapping(value = "/removeUser", method = RequestMethod.GET)
-    public String removeUser(@RequestParam(value = "id") Integer id) {
+    public String removeUser(@RequestParam(value = "id") Long id) {
         userService.removeUser(id);
         return "redirect:/user/listUser";
     }
@@ -87,9 +87,9 @@ public class UserController {
      * @return 跳转到个人信息页面
      */
     @RequestMapping(value = "/showUser", method = RequestMethod.GET)
-    public String showUser(@RequestParam(value = "id") Integer id, ModelMap modelMap) {
+    public String showUser(@RequestParam(value = "id") Long id, ModelMap modelMap) {
         User user = userService.getUser(id);
         modelMap.put("user", user);
-        return "/users/showUser";
+        return "users/showUserPage";
     }
 }

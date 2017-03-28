@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 /**
- * Created by lunhengle on 2016/12/6.
+ * Created by lunyujie on 2016/12/6.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

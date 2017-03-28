@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 成绩dao实现类.
- * Created by lunhengle on 2017/3/23.
+ * Created by lunyujie on 2017/3/23.
  */
 @Repository
 public class AchievementDaoImpl implements AchievementDao {
@@ -31,7 +31,7 @@ public class AchievementDaoImpl implements AchievementDao {
      * @return 成绩
      */
     @Override
-    public Achievement getAchievement(long id) {
+    public Achievement getAchievement(Long id) {
         if (this.getAchievementCount(id)) {
             final String sql = "SELECT * FROM ACHIEVEMENT WHERE ID = ?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<Achievement>() {
@@ -51,7 +51,7 @@ public class AchievementDaoImpl implements AchievementDao {
      */
     @Override
     public void saveAchievement(Achievement achievement) {
-        if (achievement.getId() != 0) { //更新
+        if (null!=achievement.getId()) { //更新
             final String sql = "UPDATE ACHIEVEMENT SET ACHIEVEMENT = ?,LEVELS = ?,SCHOOL_YEAR = ?, SUBJECT = ? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), achievement.getId()});
         } else { //插入
@@ -68,7 +68,7 @@ public class AchievementDaoImpl implements AchievementDao {
      * @param id id
      */
     @Override
-    public void removeAchievement(long id) {
+    public void removeAchievement(Long id) {
         final String sql = "DELETE FROM ACHIEVEMENT WHERE ID = ?";
         jdbcTemplate.update(sql, new Object[]{id});
     }
@@ -100,7 +100,7 @@ public class AchievementDaoImpl implements AchievementDao {
      * @param id id
      * @return true 存在 false 不存在
      */
-    private boolean getAchievementCount(final long id) {
+    private boolean getAchievementCount(final Long id) {
         boolean isTrue = true;
         final String sqlCount = "SELECT COUNT(1) FROM ACHIEVEMENT WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sqlCount, new Object[]{id}, Integer.class);

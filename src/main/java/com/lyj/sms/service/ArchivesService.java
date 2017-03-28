@@ -15,7 +15,7 @@ public interface ArchivesService {
      * @param id 档案id
      * @return 档案
      */
-    Archives getArchives(final long id);
+    Archives getArchives(final Long id);
 
     /**
      * 保存档案.
@@ -29,7 +29,7 @@ public interface ArchivesService {
      *
      * @param id id
      */
-    void removeArchives(final long id);
+    void removeArchives(final Long id);
 
     /**
      * 根据学校名获取档案.

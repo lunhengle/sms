@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 成绩 dao.
- * Created by lunhengle on 2017/3/23.
+ * Created by lunyujie on 2017/3/23.
  */
 public interface AchievementDao {
     /**
@@ -15,7 +15,7 @@ public interface AchievementDao {
      * @param id 成绩id
      * @return 成绩
      */
-    Achievement getAchievement(final long id);
+    Achievement getAchievement(final Long id);
 
     /**
      * 保存成绩.
@@ -29,7 +29,7 @@ public interface AchievementDao {
      *
      * @param id id
      */
-    void removeAchievement(final long id);
+    void removeAchievement(final Long id);
 
     /**
      * 根据成绩学年获取成绩.

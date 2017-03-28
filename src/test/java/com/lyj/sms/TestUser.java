@@ -40,7 +40,7 @@ public class TestUser {
         user.setEmail("helloWorld@163.com");
         user.setAddress("河南省郑州市惠济区");
         userService.saveUser(user);
-        User user1 = userService.getUser(7l);
+        User user1 = userService.getUser(7L);
         Assert.assertEquals("test", user1.getName());
         Assert.assertEquals("河南省郑州市惠济区", user1.getAddress());
     }
@@ -50,10 +50,10 @@ public class TestUser {
      */
     @Test
     public void testUpdateUser() {
-        User user = userService.getUser(1l);
+        User user = userService.getUser(1L);
         user.setName("测试");
         userService.saveUser(user);
-        User user1 = userService.getUser(1l);
+        User user1 = userService.getUser(1L);
         Assert.assertEquals("测试", user1.getName());
     }
 
@@ -62,8 +62,8 @@ public class TestUser {
      */
     @Test
     public void testRemoveUser() {
-        userService.removeUser(1l);
-        User user = userService.getUser(1l);
+        userService.removeUser(1L);
+        User user = userService.getUser(1L);
         Assert.assertNull(user);
     }
 
@@ -83,7 +83,8 @@ public class TestUser {
      */
     @Test
     public void testGetUser() {
-        User user = userService.getUser(1l);
-        Assert.assertEquals(1, user.getId());
+        User user = userService.getUser(1L);
+        Long l=1L;
+        Assert.assertEquals(l, user.getId());
     }
 }

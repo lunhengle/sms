@@ -1,7 +1,7 @@
 package com.lyj.sms.dao.impl;
 
 import com.lyj.sms.bean.User;
-import com.lyj.sms.common.Constants;
+import com.lyj.sms.constans.Constants;
 import com.lyj.sms.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
      * @param id 个人id
      * @return 个人
      */
-    public final User getUser(final long id) {
+    public final User getUser(final Long id) {
         if (this.getUserCount(id)) {
             final String sql = "SELECT * FROM USER WHERE ID = ?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<User>() {
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public void saveUser(final User user) {
-        if (user.getId() != 0) { //更新
+        if (null != user.getId()) { //更新
             final String sql = "UPDATE USER SET NAME = ?,ID_CARDS = ?,TELEPHONE = ?,EMAIL = ?, ADDRESS = ? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{user.getName(), user.getIdCards(), user.getTelephone(), user.getEmail(), user.getAddress(), user.getId()});
         } else { //插入
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
      * @param id id
      * @return true 存在 false 不存在
      */
-    private boolean getUserCount(final long id) {
+    private boolean getUserCount(final Long id) {
         boolean isTrue = true;
         final String sqlCount = "SELECT COUNT(1) FROM USER WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sqlCount, new Object[]{id}, Integer.class);
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
      * @param id id
      */
     @Override
-    public void removeUser(final long id) {
+    public void removeUser(final Long id) {
         final String sql = "DELETE FROM USER WHERE ID = ?";
         jdbcTemplate.update(sql, new Object[]{id});
     }

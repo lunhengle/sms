@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: lunhengle
+  User: lunyujie
   Date: 2016/11/14
   Time: 15:30
   To change this template use File | Settings | File Templates.
@@ -25,10 +25,11 @@
                                 class="fa fa-table fa-fw"></i>个人管理</a>
                     </li>
                     <li>
-                        <a href="<%=basePath%>/tables" target="mainFrame"><i class="fa fa-table fa-fw"></i>成绩管理</a>
+                        <a href="<%=basePath%>/achievement/listAchievement" target="mainFrame"><i
+                                class="fa fa-table fa-fw"></i>成绩管理</a>
                     </li>
                     <li>
-                        <a href="<%=basePath%>/tables" target="mainFrame"><i class="fa fa-table fa-fw"></i>档案管理</a>
+                        <a href="<%=basePath%>/archives/listArchives" target="mainFrame"><i class="fa fa-table fa-fw"></i>档案管理</a>
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: lunhengle
+  User: lunyujie
   Date: 2016/11/14
   Time: 15:30
   To change this template use File | Settings | File Templates.
@@ -50,7 +50,6 @@
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover"
                        id="dataTables-example">
-                    <thead>
                     <tr>
                         <th style="text-align: center">姓名</th>
                         <th style="text-align: center">身份证号</th>
@@ -60,8 +59,6 @@
                         <th style="text-align: center">状态</th>
                         <th style="text-align: center">操作</th>
                     </tr>
-                    </thead>
-                    <tbody>
                     <c:forEach items="${list}" var="list">
                         <tr>
                             <td style="text-align: center">${list.name}</td>
@@ -91,7 +88,6 @@
                             </td>
                         </tr>
                     </c:forEach>
-                    </tbody>
                 </table>
                 <!-- /.table-responsive -->
             </div>

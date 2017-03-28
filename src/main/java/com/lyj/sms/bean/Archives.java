@@ -10,11 +10,11 @@ public class Archives {
     /**
      * id.
      */
-    private long id;
+    private Long id;
     /**
      * 个人id.
      */
-    private long userId;
+    private Long userId;
     /**
      * 学校名称.
      */
@@ -44,19 +44,19 @@ public class Archives {
      */
     private Date created;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

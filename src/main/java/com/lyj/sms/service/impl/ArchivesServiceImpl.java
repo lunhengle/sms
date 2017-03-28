@@ -27,7 +27,7 @@ public class ArchivesServiceImpl implements ArchivesService {
      * @return 档案
      */
     @Override
-    public Archives getArchives(long id) {
+    public Archives getArchives(Long id) {
         return archivesDao.getArchives(id);
     }
 
@@ -47,7 +47,7 @@ public class ArchivesServiceImpl implements ArchivesService {
      * @param id id
      */
     @Override
-    public void removeArchives(long id) {
+    public void removeArchives(Long id) {
         archivesDao.removeArchives(id);
     }
 

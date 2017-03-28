@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
      * @param id 个人id
      * @return 个人
      */
-    public final User getUser(final long id) {
+    public final User getUser(final Long id) {
         return userDao.getUser(id);
     }
 
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
      * @param id id
      */
     @Override
-    public void removeUser(final long id) {
+    public void removeUser(final Long id) {
         userDao.removeUser(id);
     }
 
