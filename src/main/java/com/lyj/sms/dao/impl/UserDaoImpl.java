@@ -97,11 +97,11 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<User> getUserList(final String name) {
-        String sql = "SELECT * FROM USER WHERE 1 = 1 ";
-        Object[] objects = new Object[]{};
+        String sql = "SELECT * FROM USER WHERE 1 = 1 AND ROLE_CODE = ?";
+        Object[] objects = new Object[]{Constants.ROLE_CODE_NORMAL.getValue()};
         if (null != name && "" != name) {
             sql += " AND NAME LIKE ? ";
-            objects = new Object[]{"%" + name + "%"};
+            objects = new Object[]{Constants.ROLE_CODE_NORMAL.getValue(), "%" + name + "%"};
         }
         return jdbcTemplate.query(sql, objects, new RowMapper<User>() {
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -150,6 +150,7 @@ public class UserDaoImpl implements UserDao {
         user.setEmail(rs.getString("EMAIL"));
         user.setAddress(rs.getString("ADDRESS"));
         user.setStatus(rs.getInt("STATUS"));
+        user.setRoleCode(rs.getInt("ROLE_CODE"));
         user.setCreated(rs.getDate("CREATED"));
         return user;
     }

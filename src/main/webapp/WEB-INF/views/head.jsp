@@ -14,7 +14,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">学生管理系统</a>
+    <a class="navbar-brand" href="<%=basePath%>/index">学生管理系统</a>
 </div>
 <!-- /.navbar-header -->
 
@@ -25,15 +25,22 @@
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a href="<%=basePath%>/user/showUser"><i class="fa fa-user fa-fw"></i> 用户信息</a>
+            <li><a href="<%=basePath%>/user/showUser?id=${sessionScope.userId}" target="mainFrame"><i
+                    class="fa fa-user fa-fw"></i>
+                用户信息</a>
             </li>
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+            <li><a href="<%=basePath%>/findPassword"><i class="fa fa-gear fa-fw"></i> 重置密码</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出系统</a>
+            <li><a href="<%=basePath%>/logout"><i class="fa fa-sign-out fa-fw"></i> 退出系统</a>
             </li>
         </ul>
         <!-- /.dropdown-user -->
     </li>
     <!-- /.dropdown -->
 </ul>
+<script>
+    $(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>

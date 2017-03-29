@@ -31,7 +31,15 @@ public enum Constants {
     /**
      * 个人状态 0 禁用 1 启用.
      */
-    STATUS_ENABLE(1);
+    STATUS_ENABLE(1),
+    /**
+     * 角色 1 管理员 2 普通.
+     */
+    ROLE_CODE_ADMIN(1),
+    /**
+     * 角色 1 管理员 2 普通.
+     */
+    ROLE_CODE_NORMAL(2);
     /**
      * int 值.
      */

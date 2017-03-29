@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lunyujie
@@ -19,29 +20,45 @@
         <!-- /.navbar-top-links -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-table fa-fw"></i> 个人管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<%=basePath%>/user/listUser" target="mainFrame">人员管理</a>
-                            </li>
-                            <li>
-                                <a href="<%=basePath%>/user/showUser?id=${sessionScope.userId}"
-                                   target="mainFrame">个人信息</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="<%=basePath%>/achievement/listAchievement" target="mainFrame"><i
-                                class="fa fa-bar-chart-o fa-fw"></i>成绩管理</a>
-                    </li>
-                    <li>
-                        <a href="<%=basePath%>/archives/listArchives" target="mainFrame"><i
-                                class="fa fa-edit fa-fw"></i>档案管理</a>
-                    </li>
-                </ul>
+                <c:if test="${sessionScope.roleCode==1}">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> 个人管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%=basePath%>/user/listUser" target="mainFrame">人员管理</a>
+                                </li>
+                                <li>
+                                    <a href="<%=basePath%>/user/showUser?id=${sessionScope.userId}"
+                                       target="mainFrame">个人信息</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="<%=basePath%>/achievement/listAchievement" target="mainFrame"><i
+                                    class="fa fa-bar-chart-o fa-fw"></i>成绩管理</a>
+                        </li>
+                        <li>
+                            <a href="<%=basePath%>/archives/listArchives" target="mainFrame"><i
+                                    class="fa fa-edit fa-fw"></i>档案管理</a>
+                        </li>
+                    </ul>
+                </c:if>
+                <c:if test="${sessionScope.roleCode==2}">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> 个人管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<%=basePath%>/user/showUser?id=${sessionScope.userId}"
+                                       target="mainFrame">个人信息</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </c:if>
             </div>
             <!-- /.sidebar-collapse -->
         </div>
@@ -49,8 +66,66 @@
     </nav>
 
     <div id="page-wrapper">
+        <c:if test="${sessionScope.roleCode==1}">
+            <div id="count">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">统计信息</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">12</div>
+                                        <div>成绩信息!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="<%=basePath%>/achievement/listAchievement" target="mainFrame">
+                                <div class="panel-footer">
+                                    <span class="pull-left">详细信息</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">124</div>
+                                        <div>档案信息</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="<%=basePath%>/archives/listArchives" target="mainFrame">
+                                <div class="panel-footer">
+                                    <span class="pull-left">详细信息</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
         <iframe id="mainFrame" name="mainFrame" scrolling="no" frameborder="0"
-                style="width: 100%;height: 100%"></iframe>
+                style="width: 100%;height: 100%">
+        </iframe>
     </div>
 </div>
 </body>
@@ -97,6 +172,11 @@
         eval("window.IE9MoreRealHeight" + iframeId + "=0");
         window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
     }
+    $(function () {
+        $("a").click(function () {
+            $("#count").hide();
+        });
+    });
     //-->
 </script>
 </html>

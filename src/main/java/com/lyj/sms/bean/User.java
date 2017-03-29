@@ -40,6 +40,10 @@ public class User {
      */
     private int status;
     /**
+     * 角色 1 管理员 2 普通.
+     */
+    private int roleCode;
+    /**
      * 创建时间.
      */
     private Date created;
@@ -106,6 +110,14 @@ public class User {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(int roleCode) {
+        this.roleCode = roleCode;
     }
 
     public Date getCreated() {

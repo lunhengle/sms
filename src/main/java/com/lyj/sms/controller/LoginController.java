@@ -32,16 +32,17 @@ public class LoginController {
     /**
      * 登陆.
      *
-     * @param username 个人名
-     * @param password 密码
-     * @param modelMap model
+     * @param username           个人名
+     * @param password           密码
+     * @param modelMap           model
+     * @param httpServletRequest 请求
      * @return 主页面
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "username") String username,
-                        @RequestParam(value = "password") String password,
+    public String login(@RequestParam(value = "username") final String username,
+                        @RequestParam(value = "password") final String password,
                         ModelMap modelMap, HttpServletRequest httpServletRequest) {
-        logger.debug("login:" + "username :" + username + " password :" + password);
+        logger.debug("login:" + "username :" + username);
         User user = userService.getUserByTelephone(username);
         if (null == user) {
             modelMap.put("message", "当前用户不存在！");
@@ -51,8 +52,57 @@ public class LoginController {
             return "login";
         } else {
             httpServletRequest.getSession().setAttribute("userId", user.getId());
+            httpServletRequest.getSession().setAttribute("roleCode", user.getRoleCode());
             return "index";
         }
+    }
+
+    /**
+     * 退出系统.
+     *
+     * @param httpServletRequest 请求
+     * @return 退出到登陆界面
+     */
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest httpServletRequest) {
+        httpServletRequest.getSession().setAttribute("userId", null);
+        return "login";
+    }
+
+    /**
+     * 跳转到找回密码界面.
+     *
+     * @return 找回密码
+     */
+    @RequestMapping(value = "/findPassword")
+    public String findPassword() {
+        return "findPassword";
+    }
+
+    /**
+     * 跳转到首页.
+     *
+     * @return 首页
+     */
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
+
+    /**
+     * 重置密码.
+     *
+     * @param password           密码
+     * @param httpServletRequest 请求
+     * @return 首页
+     */
+    @RequestMapping(value = "/savePassword")
+    public String savePassword(@RequestParam(value = "password") final String password, HttpServletRequest httpServletRequest) {
+        Long userId = (Long) httpServletRequest.getSession().getAttribute("userId");
+        User user = userService.getUser(userId);
+        user.setPassword(password);
+        userService.saveUser(user);
+        return "login";
     }
 
 }

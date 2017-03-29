@@ -75,7 +75,7 @@ public class AchievementController {
      * @param id 成绩id
      * @return 成绩列表
      */
-    @RequestMapping(value = "/removeAchievement", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/removeAchievement", method = RequestMethod.GET)
     public String removeAchievement(@RequestParam(value = "id") Long id) {
         achievementService.removeAchievement(id);
         return "redirect:/achievement/listAchievement";
