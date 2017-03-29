@@ -31,6 +31,9 @@
                                 <input class="form-control" placeholder="密码" name="password" type="password"
                                        value="">
                             </div>
+                            <div class="row" style="text-align: center;color: red">
+                                ${message}
+                            </div>
                             <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住密码

@@ -111,6 +111,29 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
+     * 根据手机号获取用户.
+     *
+     * @param telephone 手机号
+     * @return 用户
+     */
+    @Override
+    public User getUserByTelephone(String telephone) {
+        Object[] objects = new Object[]{telephone};
+        String sqlCount = "SELECT COUNT(1) FROM USER WHERE TELEPHONE = ?";
+        int count = jdbcTemplate.queryForObject(sqlCount, objects, Integer.class);
+        if (0 != count) {
+            String sql = "SELECT * FROM USER WHERE TELEPHONE = ?";
+            return jdbcTemplate.queryForObject(sql, objects, new RowMapper<User>() {
+                public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    return getMapRow(rs);
+                }
+            });
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * 转换成user.
      *
      * @param rs 记录

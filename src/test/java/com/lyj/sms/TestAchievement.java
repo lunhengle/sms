@@ -86,4 +86,13 @@ public class TestAchievement {
         Achievement achievement = achievementService.getAchievement(1L);
         Assert.assertNull(achievement);
     }
+
+    /**
+     * 根据用户id获取成绩.
+     */
+    @Test
+    public void testGetAchievementListByUserId() {
+        List<Achievement> achievementList = achievementService.getAchievementList(1L);
+        Assert.assertNotNull(achievementList);
+    }
 }

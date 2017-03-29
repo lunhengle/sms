@@ -41,20 +41,84 @@
                 </div>
                 <div class="row">
                     <address><strong>身份证号：</strong><br>${user.idCards}</address>
-                </div>
-                <div class="row">
                     <address><strong>手机号：</strong><br>${user.telephone}</address>
                 </div>
                 <div class="row">
-                    <address>
-                        <strong>邮箱：</strong><br>${user.email}
-                    </address>
+                    <address><strong>邮箱：</strong><br>${user.email}</address>
+                    <address><strong>地址：</strong><br>${user.address}</address>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                档案信息
+            </div>
+            <div class="panel-body">
                 <div class="row">
-                    <address>
-                        <strong>地址：</strong><br>
-                        ${user.address}
-                    </address>
+                    <table width="100%" class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th style="text-align: center">学校名称</th>
+                            <th style="text-align: center">老师</th>
+                            <th style="text-align: center">年级</th>
+                            <th style="text-align: center">等级</th>
+                            <th style="text-align: center">学校地址</th>
+                            <th style="text-align: center">创建时间</th>
+                        </tr>
+                        <c:forEach items="${archivesList}" var="list">
+                            <tr>
+                                <td>${list.schoolName}</td>
+                                <td style="text-align: center">${list.teacher}</td>
+                                <td style="text-align: center">${list.grade}</td>
+                                <td style="text-align: center">
+                                    <c:forEach items="${mapLevels}" var="m">
+                                        <c:if test="${m.key==list.levels}">
+                                            <c:out value="${m.value}"/>
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
+                                <td>${list.schoolAddress}</td>
+                                <td style="text-align: center">${list.created}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                成绩信息
+            </div>
+            <div class="row">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th style="text-align: center">学科</th>
+                            <th style="text-align: center">学年</th>
+                            <th style="text-align: center">成绩</th>
+                            <th style="text-align: center">等级</th>
+                            <th style="text-align: center">创建时间</th>
+                        </tr>
+                        <c:forEach items="${achievementList}" var="list">
+                            <tr>
+                                <td style="text-align: center">${list.subject}</td>
+                                <td style="text-align: center">${list.schoolYear}</td>
+                                <td style="text-align: center">${list.achievement}</td>
+                                <td style="text-align: center">
+                                    <c:forEach items="${mapLevels}" var="m">
+                                        <c:if test="${m.key==list.levels}">
+                                            <c:out value="${m.value}"/>
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
+                                <td style="text-align: center">${list.created}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
             </div>
         </div>

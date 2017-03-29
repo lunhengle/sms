@@ -38,4 +38,12 @@ public interface UserService {
      * @return 个人列表
      */
     List<User> getUserList(final String name);
+
+    /**
+     * 根据手机号获取用户.
+     *
+     * @param telephone 手机号
+     * @return 用户
+     */
+    User getUserByTelephone(final String telephone);
 }

@@ -68,7 +68,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      */
     @Override
     public void saveArchives(Archives archives) {
-        if (null!=archives.getId()) { //更新
+        if (null != archives.getId()) { //更新
             final String sql = "UPDATE ARCHIVES SET COMMENTS = ?,GRADE = ?,LEVELS = ?,SCHOOL_ADDRESS = ?, SCHOOL_NAME = ?,TEACHER=? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{archives.getComments(), archives.getGrade(), archives.getLevels(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getId()});
         } else { //插入
@@ -104,6 +104,23 @@ public class ArchivesDaoImpl implements ArchivesDao {
             sql += " AND SCHOOL_NAME LIKE ? ";
             objects = new Object[]{"%" + schoolName + "%"};
         }
+        return jdbcTemplate.query(sql, objects, new RowMapper<Archives>() {
+            public Archives mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return getMapRow(rs);
+            }
+        });
+    }
+
+    /**
+     * 根据用户ID 获取档案信息.
+     *
+     * @param userId 用户ID
+     * @return 用户档案信息
+     */
+    @Override
+    public List<Archives> getArchivesList(Long userId) {
+        String sql = "SELECT * FROM ARCHIVES WHERE USER_ID = ?";
+        Object[] objects = new Object[]{userId};
         return jdbcTemplate.query(sql, objects, new RowMapper<Archives>() {
             public Archives mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return getMapRow(rs);

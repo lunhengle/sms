@@ -51,7 +51,7 @@ public class AchievementDaoImpl implements AchievementDao {
      */
     @Override
     public void saveAchievement(Achievement achievement) {
-        if (null!=achievement.getId()) { //更新
+        if (null != achievement.getId()) { //更新
             final String sql = "UPDATE ACHIEVEMENT SET ACHIEVEMENT = ?,LEVELS = ?,SCHOOL_YEAR = ?, SUBJECT = ? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), achievement.getId()});
         } else { //插入
@@ -87,6 +87,23 @@ public class AchievementDaoImpl implements AchievementDao {
             sql += " AND SCHOOL_YEAR LIKE ? ";
             objects = new Object[]{"%" + schoolYear + "%"};
         }
+        return jdbcTemplate.query(sql, objects, new RowMapper<Achievement>() {
+            public Achievement mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return getMapRow(rs);
+            }
+        });
+    }
+
+    /**
+     * 根据用户ID获取成绩.
+     *
+     * @param userId 用户id
+     * @return 成绩列表
+     */
+    @Override
+    public List<Achievement> getAchievementList(Long userId) {
+        String sql = "SELECT * FROM ACHIEVEMENT WHERE USER_ID = ?";
+        Object[] objects = new Object[]{userId};
         return jdbcTemplate.query(sql, objects, new RowMapper<Achievement>() {
             public Achievement mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return getMapRow(rs);

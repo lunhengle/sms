@@ -61,4 +61,15 @@ public class AchievementServiceImpl implements AchievementService {
     public List<Achievement> getAchievementList(String schoolYear) {
         return achievementDao.getAchievementList(schoolYear);
     }
+
+    /**
+     * 根据用户ID获取成绩.
+     *
+     * @param userId 用户id
+     * @return 成绩列表
+     */
+    @Override
+    public List<Achievement> getAchievementList(Long userId) {
+        return achievementDao.getAchievementList(userId);
+    }
 }

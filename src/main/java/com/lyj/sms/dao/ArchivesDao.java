@@ -34,8 +34,16 @@ public interface ArchivesDao {
     /**
      * 根据档案名或者手机号获取档案.
      *
-     * @param schoolName  学校名
+     * @param schoolName 学校名
      * @return 档案列表
      */
     List<Archives> getArchivesList(final String schoolName);
+
+    /**
+     * 根据用户ID 获取档案信息.
+     *
+     * @param userId 用户ID
+     * @return 用户档案信息
+     */
+    List<Archives> getArchivesList(final Long userId);
 }

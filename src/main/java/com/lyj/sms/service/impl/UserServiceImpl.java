@@ -61,4 +61,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserList(final String name) {
         return userDao.getUserList(name);
     }
+
+    /**
+     * 根据手机号获取用户.
+     *
+     * @param telephone 手机号
+     * @return 用户
+     */
+    @Override
+    public User getUserByTelephone(String telephone) {
+        return userDao.getUserByTelephone(telephone);
+    }
+
+
 }

@@ -36,6 +36,6 @@ public class TestLoginPage {
 
     @Test
     public void testLoginPage() throws Exception {
-        mockMvc.perform(post("/login").param("username", "lun").param("password", "123")).andExpect(status().isOk()).andExpect(view().name("index"));
+        mockMvc.perform(post("/login").param("username", "1500000000").param("password", "123456")).andExpect(status().isOk()).andExpect(view().name("index"));
     }
 }

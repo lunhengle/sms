@@ -39,4 +39,12 @@ public interface AchievementDao {
      */
     List<Achievement> getAchievementList(final String schoolYear);
 
+    /**
+     * 根据用户ID获取成绩.
+     *
+     * @param userId 用户id
+     * @return 成绩列表
+     */
+    List<Achievement> getAchievementList(final Long userId);
+
 }

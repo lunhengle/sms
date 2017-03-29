@@ -1,6 +1,9 @@
 package com.lyj.sms.controller;
 
 import com.lyj.sms.bean.User;
+import com.lyj.sms.constans.Constants;
+import com.lyj.sms.service.AchievementService;
+import com.lyj.sms.service.ArchivesService;
 import com.lyj.sms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,16 @@ public class UserController {
      */
     @Autowired
     private UserService userService;
+    /**
+     * 注入成绩service.
+     */
+    @Autowired
+    private AchievementService achievementService;
+    /**
+     * 注入档案service.
+     */
+    @Autowired
+    private ArchivesService archivesService;
 
 
     /**
@@ -90,6 +103,9 @@ public class UserController {
     public String showUser(@RequestParam(value = "id") Long id, ModelMap modelMap) {
         User user = userService.getUser(id);
         modelMap.put("user", user);
+        modelMap.put("archivesList", archivesService.getArchivesList(id));
+        modelMap.put("achievementList", achievementService.getAchievementList(id));
+        modelMap.put("mapLevels", Constants.getMapLevels());
         return "users/showUserPage";
     }
 }

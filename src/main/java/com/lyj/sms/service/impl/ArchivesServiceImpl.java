@@ -61,4 +61,15 @@ public class ArchivesServiceImpl implements ArchivesService {
     public List<Archives> getArchivesList(String name) {
         return archivesDao.getArchivesList(name);
     }
+
+    /**
+     * 根据用户ID 获取档案信息.
+     *
+     * @param userId 用户ID
+     * @return 用户档案信息
+     */
+    @Override
+    public List<Archives> getArchivesList(Long userId) {
+        return archivesDao.getArchivesList(userId);
+    }
 }

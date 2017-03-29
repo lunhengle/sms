@@ -84,7 +84,18 @@ public class TestUser {
     @Test
     public void testGetUser() {
         User user = userService.getUser(1L);
-        Long l=1L;
+        Long l = 1L;
         Assert.assertEquals(l, user.getId());
+    }
+
+    /**
+     * 根据手机号得到用户.
+     */
+    @Test
+    public void testGetUserByTelephone() {
+        User user = userService.getUserByTelephone("15003838864");
+        Assert.assertNull(user);
+        user=userService.getUserByTelephone("15000000000");
+        Assert.assertNotNull(user);
     }
 }

@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<%=basePath%>/styles/metisMenu.min.css"/>
 <link rel="stylesheet" href="<%=basePath%>/styles/sb-admin-2.min.css"/>
 <!-- Morris Charts CSS -->
-<link rel="stylesheet" href="<%=basePath%>/styles/morris.css"/>
+<%--<link rel="stylesheet" href="<%=basePath%>/styles/morris.css"/>--%>
 
 <link rel="stylesheet" href="<%=basePath%>/styles/font-awesome.min.css"/>
 

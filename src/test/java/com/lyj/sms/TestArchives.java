@@ -33,7 +33,7 @@ public class TestArchives {
     @Test
     public void testGetArchives() {
         Archives archives = archivesService.getArchives(1L);
-        Long l=1L;
+        Long l = 1L;
         Assert.assertEquals(l, archives.getId());
     }
 
@@ -86,5 +86,14 @@ public class TestArchives {
         archivesService.removeArchives(1L);
         Archives archives = archivesService.getArchives(1L);
         Assert.assertNull(archives);
+    }
+
+    /**
+     * 根据用户id 获取档案信息.
+     */
+    @Test
+    public void testGetArchivesListByUserId() {
+        List<Archives> archivesList = archivesService.getArchivesList(1L);
+        Assert.assertNotNull(archivesList);
     }
 }
