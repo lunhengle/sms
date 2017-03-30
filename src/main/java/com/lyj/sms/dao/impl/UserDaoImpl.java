@@ -56,9 +56,9 @@ public class UserDaoImpl implements UserDao {
             jdbcTemplate.update(sql, new Object[]{user.getName(), user.getIdCards(), user.getTelephone(), user.getEmail(), user.getAddress(), user.getId()});
         } else { //插入
             final String sqlCount = "SELECT COUNT(1) FROM USER";
-            int count = jdbcTemplate.queryForObject(sqlCount, Integer.class);
-            final String sql = "INSERT INTO USER(ID,NAME,PASSWORD,ID_CARDS,TELEPHONE,EMAIL,ADDRESS,STATUS,CREATED)VALUES(?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql, new Object[]{count + 1, user.getName(), user.getPassword(), user.getIdCards(), user.getTelephone(), user.getEmail(), user.getAddress(), Constants.STATUS_ENABLE.getValue(), new Date()});
+            long count = jdbcTemplate.queryForObject(sqlCount, Long.class);
+            final String sql = "INSERT INTO USER(ID,NAME,PASSWORD,ID_CARDS,TELEPHONE,EMAIL,ADDRESS,STATUS,ROLE_CODE,CREATED)VALUES(?,?,?,?,?,?,?,?,?,?)";
+            jdbcTemplate.update(sql, new Object[]{count + 1, user.getName(), user.getPassword(), user.getIdCards(), user.getTelephone(), user.getEmail(), user.getAddress(), Constants.STATUS_ENABLE.getValue(),Constants.ROLE_CODE_NORMAL.getValue(), new Date()});
         }
     }
 

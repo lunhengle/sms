@@ -37,7 +37,7 @@ public class AchievementController {
         List<Achievement> list = achievementService.getAchievementList(schoolYear);
         modelMap.put("list", list);
         modelMap.put("mapLevels", Constants.getMapLevels());
-        return "achievement/listAchievementPage";
+        return "achievements/listAchievementPage";
     }
 
     /**
@@ -54,7 +54,7 @@ public class AchievementController {
             modelMap.put("achievement", achievement);
         }
         modelMap.put("mapLevels", Constants.getMapLevels());
-        return "achievement/editAchievementPage";
+        return "achievements/editAchievementPage";
     }
 
     /**
