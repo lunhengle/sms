@@ -15,6 +15,7 @@
         <jstl-version>1.2</jstl-version>
         <logback-version>1.0.11</logback-version>
         <slf4j-version>1.7.13</slf4j-version>
+        <jackson-version>2.3.0</jackson-version>
         <project.build.name>sms</project.build.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -118,17 +119,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.3.0</version>
+            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.3.0</version>
+            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.3.0</version>
+            <version>${jackson-version}</version>
         </dependency>
     </dependencies>
     <build>
