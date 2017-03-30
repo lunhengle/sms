@@ -28,6 +28,17 @@ public class TestUser {
     private UserService userService;
 
     /**
+     * 测试得到个人列表.
+     */
+    @Test
+    public void testGetUserList() {
+        List<User> list = userService.getUserList("");
+        Assert.assertNotNull(list);
+        list = userService.getUserList("飞");
+        Assert.assertEquals(1, list.size());
+    }
+
+    /**
      * 保存个人.
      */
     @Test
@@ -67,16 +78,6 @@ public class TestUser {
         Assert.assertNull(user);
     }
 
-    /**
-     * 测试得到个人列表.
-     */
-    @Test
-    public void testGetUserList() {
-        List<User> list = userService.getUserList("");
-        Assert.assertEquals(13, list.size());
-        list = userService.getUserList("飞");
-        Assert.assertEquals(1, list.size());
-    }
 
     /**
      * 得到个人.
