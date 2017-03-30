@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 测试档案.
- * Created by lunyujie on 2017/3/27.
+ * Created by lunyujie on 2027/3/27.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -32,8 +32,8 @@ public class TestArchives {
      */
     @Test
     public void testGetArchives() {
-        Archives archives = archivesService.getArchives(1L);
-        Long l = 1L;
+        Archives archives = archivesService.getArchives(2L);
+        Long l = 2L;
         Assert.assertEquals(l, archives.getId());
     }
 
@@ -56,14 +56,14 @@ public class TestArchives {
         Archives archives = new Archives();
         archives.setUserId(4L);
         archives.setTeacher("赵老师");
-        archives.setLevels(1);
+        archives.setLevels(2);
         archives.setSchoolName("郑州十一中");
         archives.setComments("优秀");
         archives.setGrade("一年级");
         archives.setSchoolAddress("郑州二七区");
         archivesService.saveArchives(archives);
-        Archives archives1 = archivesService.getArchives(10L);
-        Assert.assertEquals("郑州十一中", archives1.getSchoolName());
+        Archives archives2 = archivesService.getArchives(10L);
+        Assert.assertEquals("郑州十一中", archives2.getSchoolName());
     }
 
     /**
@@ -71,11 +71,11 @@ public class TestArchives {
      */
     @Test
     public void testUpdateArchives() {
-        Archives archives = archivesService.getArchives(1L);
+        Archives archives = archivesService.getArchives(2L);
         archives.setSchoolAddress("北京海淀区");
         archivesService.saveArchives(archives);
-        Archives archives1 = archivesService.getArchives(1L);
-        Assert.assertEquals("北京海淀区", archives1.getSchoolAddress());
+        Archives archives2 = archivesService.getArchives(2L);
+        Assert.assertEquals("北京海淀区", archives2.getSchoolAddress());
     }
 
     /**
@@ -83,8 +83,8 @@ public class TestArchives {
      */
     @Test
     public void testRemoveArchives() {
-        archivesService.removeArchives(1L);
-        Archives archives = archivesService.getArchives(1L);
+        archivesService.removeArchives(2L);
+        Archives archives = archivesService.getArchives(2L);
         Assert.assertNull(archives);
     }
 
@@ -93,7 +93,16 @@ public class TestArchives {
      */
     @Test
     public void testGetArchivesListByUserId() {
-        List<Archives> archivesList = archivesService.getArchivesList(1L);
+        List<Archives> archivesList = archivesService.getArchivesList(2L);
         Assert.assertNotNull(archivesList);
+    }
+
+    /**
+     * 测试档案数量.
+     */
+    @Test
+    public void testGetArchivesCount() {
+        long count = archivesService.getArchivesCount();
+        Assert.assertNotNull(count);
     }
 }

@@ -32,7 +32,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      */
     @Override
     public Archives getArchives(Long id) {
-        if (this.getArchivesCount(id)) {
+        if (this.getArchivesCountById(id)) {
             final String sql = "SELECT * FROM ARCHIVES WHERE ID = ?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<Archives>() {
                 public Archives mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -50,7 +50,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
      * @param id id
      * @return true 存在 false 不存在
      */
-    private boolean getArchivesCount(final Long id) {
+    private boolean getArchivesCountById(final Long id) {
         boolean isTrue = true;
         final String sqlCount = "SELECT COUNT(1) FROM ARCHIVES WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sqlCount, new Object[]{id}, Integer.class);
@@ -72,8 +72,7 @@ public class ArchivesDaoImpl implements ArchivesDao {
             final String sql = "UPDATE ARCHIVES SET COMMENTS = ?,GRADE = ?,LEVELS = ?,SCHOOL_ADDRESS = ?, SCHOOL_NAME = ?,TEACHER=? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{archives.getComments(), archives.getGrade(), archives.getLevels(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getId()});
         } else { //插入
-            final String sqlCount = "SELECT COUNT(1) FROM ARCHIVES";
-            int count = jdbcTemplate.queryForObject(sqlCount, Integer.class);
+            long count = this.getArchivesCount();
             final String sql = "INSERT INTO ARCHIVES(ID,USER_ID,COMMENTS,GRADE,SCHOOL_ADDRESS,SCHOOL_NAME,TEACHER,LEVELS,CREATED)VALUES(?,?,?,?,?,?,?,?,?)";
             jdbcTemplate.update(sql, new Object[]{count + 1, archives.getUserId(), archives.getComments(), archives.getGrade(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getLevels(), new Date()});
         }
@@ -126,6 +125,17 @@ public class ArchivesDaoImpl implements ArchivesDao {
                 return getMapRow(rs);
             }
         });
+    }
+
+    /**
+     * 获取档案个数.
+     *
+     * @return 档案个数
+     */
+    @Override
+    public Long getArchivesCount() {
+        final String sqlCount = "SELECT COUNT(1) FROM ARCHIVES";
+        return jdbcTemplate.queryForObject(sqlCount, Long.class);
     }
 
     /**

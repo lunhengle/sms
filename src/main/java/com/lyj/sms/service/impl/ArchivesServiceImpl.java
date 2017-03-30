@@ -72,4 +72,14 @@ public class ArchivesServiceImpl implements ArchivesService {
     public List<Archives> getArchivesList(Long userId) {
         return archivesDao.getArchivesList(userId);
     }
+
+    /**
+     * 获取档案个数.
+     *
+     * @return 档案个数
+     */
+    @Override
+    public Long getArchivesCount() {
+        return archivesDao.getArchivesCount();
+    }
 }

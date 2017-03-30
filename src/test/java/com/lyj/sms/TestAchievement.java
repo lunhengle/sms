@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 成绩测试.
- * Created by lunyujie on 2017/3/27.
+ * Created by lunyujie on 2027/3/27.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -32,8 +32,8 @@ public class TestAchievement {
      */
     @Test
     public void testGetAchievement() {
-        Achievement achievement = achievementService.getAchievement(1L);
-        Long l = 1L;
+        Achievement achievement = achievementService.getAchievement(2L);
+        Long l = 2L;
         Assert.assertEquals(l, achievement.getId());
     }
 
@@ -56,13 +56,13 @@ public class TestAchievement {
         Achievement achievement = new Achievement();
         achievement.setSubject("语文");
         achievement.setSchoolYear("第二学年");
-        achievement.setAchievement(100);
-        achievement.setLevels(1);
-        achievement.setUserId(1L);
+        achievement.setAchievement(200);
+        achievement.setLevels(2);
+        achievement.setUserId(2L);
         achievementService.saveAchievement(achievement);
-        Achievement achievement1 = achievementService.getAchievement(16L);
+        Achievement achievement2 = achievementService.getAchievement(16L);
         Long l = 16L;
-        Assert.assertEquals(l, achievement1.getId());
+        Assert.assertEquals(l, achievement2.getId());
     }
 
     /**
@@ -70,11 +70,11 @@ public class TestAchievement {
      */
     @Test
     public void testUpdateAchievement() {
-        Achievement achievement = achievementService.getAchievement(1L);
+        Achievement achievement = achievementService.getAchievement(2L);
         achievement.setSchoolYear("第二学年");
         achievementService.saveAchievement(achievement);
-        Achievement achievement1 = achievementService.getAchievement(1L);
-        Assert.assertEquals("第二学年", achievement1.getSchoolYear());
+        Achievement achievement2 = achievementService.getAchievement(2L);
+        Assert.assertEquals("第二学年", achievement2.getSchoolYear());
     }
 
     /**
@@ -82,8 +82,8 @@ public class TestAchievement {
      */
     @Test
     public void testRemoveAchievement() {
-        achievementService.removeAchievement(1L);
-        Achievement achievement = achievementService.getAchievement(1L);
+        achievementService.removeAchievement(2L);
+        Achievement achievement = achievementService.getAchievement(2L);
         Assert.assertNull(achievement);
     }
 
@@ -92,7 +92,16 @@ public class TestAchievement {
      */
     @Test
     public void testGetAchievementListByUserId() {
-        List<Achievement> achievementList = achievementService.getAchievementList(1L);
+        List<Achievement> achievementList = achievementService.getAchievementList(2L);
         Assert.assertNotNull(achievementList);
+    }
+
+    /**
+     * 测试成绩个数.
+     */
+    @Test
+    public void testGetAchievementCount() {
+        long count = achievementService.getAchievementCount();
+        Assert.assertNotNull(count);
     }
 }

@@ -45,4 +45,10 @@ public interface AchievementService {
      * @return 成绩列表
      */
     List<Achievement> getAchievementList(final Long userId);
+    /**
+     * 获取成绩个数.
+     *
+     * @return 成绩数
+     */
+    Long getAchievementCount();
 }

@@ -46,4 +46,11 @@ public interface ArchivesDao {
      * @return 用户档案信息
      */
     List<Archives> getArchivesList(final Long userId);
+
+    /**
+     * 获取档案个数.
+     *
+     * @return 档案个数
+     */
+    Long getArchivesCount();
 }

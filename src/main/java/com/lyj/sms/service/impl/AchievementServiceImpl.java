@@ -72,4 +72,14 @@ public class AchievementServiceImpl implements AchievementService {
     public List<Achievement> getAchievementList(Long userId) {
         return achievementDao.getAchievementList(userId);
     }
+
+    /**
+     * 获取成绩个数.
+     *
+     * @return 成绩数
+     */
+    @Override
+    public Long getAchievementCount() {
+        return achievementDao.getAchievementCount();
+    }
 }

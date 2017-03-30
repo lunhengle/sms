@@ -36,11 +36,11 @@ public class TestUser {
         user.setName("test");
         user.setPassword("123456");
         user.setIdCards("4105267777777777");
-        user.setTelephone("15003838864");
+        user.setTelephone("1500383333333");
         user.setEmail("helloWorld@163.com");
         user.setAddress("河南省郑州市惠济区");
         userService.saveUser(user);
-        User user1 = userService.getUser(7L);
+        User user1 = userService.getUser(15L);
         Assert.assertEquals("test", user1.getName());
         Assert.assertEquals("河南省郑州市惠济区", user1.getAddress());
     }
@@ -73,7 +73,7 @@ public class TestUser {
     @Test
     public void testGetUserList() {
         List<User> list = userService.getUserList("");
-        Assert.assertEquals(6, list.size());
+        Assert.assertEquals(13, list.size());
         list = userService.getUserList("飞");
         Assert.assertEquals(1, list.size());
     }
@@ -93,9 +93,7 @@ public class TestUser {
      */
     @Test
     public void testGetUserByTelephone() {
-        User user = userService.getUserByTelephone("15003838864");
-        Assert.assertNull(user);
-        user=userService.getUserByTelephone("15000000000");
+        User user = userService.getUserByTelephone("15000000000");
         Assert.assertNotNull(user);
     }
 }

@@ -1,6 +1,8 @@
 package com.lyj.sms.controller;
 
 import com.lyj.sms.bean.User;
+import com.lyj.sms.service.AchievementService;
+import com.lyj.sms.service.ArchivesService;
 import com.lyj.sms.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +26,20 @@ public class LoginController {
      */
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
     /**
-     * 注入用户服务.
+     * 注入个人服务.
      */
     @Autowired
     private UserService userService;
+    /**
+     * 注入成绩service.
+     */
+    @Autowired
+    private AchievementService achievementService;
+    /**
+     * 注入档案service.
+     */
+    @Autowired
+    private ArchivesService archivesService;
 
     /**
      * 登陆.
@@ -53,6 +65,8 @@ public class LoginController {
         } else {
             httpServletRequest.getSession().setAttribute("userId", user.getId());
             httpServletRequest.getSession().setAttribute("roleCode", user.getRoleCode());
+            modelMap.put("archivesCount", archivesService.getArchivesCount());
+            modelMap.put("achievementCount", achievementService.getAchievementCount());
             return "index";
         }
     }
@@ -82,10 +96,13 @@ public class LoginController {
     /**
      * 跳转到首页.
      *
+     * @param modelMap model
      * @return 首页
      */
     @RequestMapping(value = "/index")
-    public String index() {
+    public String index(ModelMap modelMap) {
+        modelMap.put("archivesCount", archivesService.getArchivesCount());
+        modelMap.put("achievementCount", achievementService.getAchievementCount());
         return "index";
     }
 

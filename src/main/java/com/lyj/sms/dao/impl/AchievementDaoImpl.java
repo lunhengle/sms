@@ -32,7 +32,7 @@ public class AchievementDaoImpl implements AchievementDao {
      */
     @Override
     public Achievement getAchievement(Long id) {
-        if (this.getAchievementCount(id)) {
+        if (this.getAchievementCountById(id)) {
             final String sql = "SELECT * FROM ACHIEVEMENT WHERE ID = ?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<Achievement>() {
                 public Achievement mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -55,12 +55,12 @@ public class AchievementDaoImpl implements AchievementDao {
             final String sql = "UPDATE ACHIEVEMENT SET ACHIEVEMENT = ?,LEVELS = ?,SCHOOL_YEAR = ?, SUBJECT = ? WHERE ID = ?";
             jdbcTemplate.update(sql, new Object[]{achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), achievement.getId()});
         } else { //插入
-            final String sqlCount = "SELECT COUNT(1) FROM ACHIEVEMENT";
-            int count = jdbcTemplate.queryForObject(sqlCount, Integer.class);
+            long count = this.getAchievementCount();
             final String sql = "INSERT INTO ACHIEVEMENT(ID,USER_ID,ACHIEVEMENT,LEVELS,SCHOOL_YEAR,SUBJECT,CREATED)VALUES(?,?,?,?,?,?,?)";
             jdbcTemplate.update(sql, new Object[]{count + 1, achievement.getUserId(), achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), new Date()});
         }
     }
+
 
     /**
      * 根据id删除成绩.
@@ -112,12 +112,23 @@ public class AchievementDaoImpl implements AchievementDao {
     }
 
     /**
+     * 获取成绩个数.
+     *
+     * @return 成绩数
+     */
+    @Override
+    public Long getAchievementCount() {
+        final String sqlCount = "SELECT COUNT(1) FROM ACHIEVEMENT";
+        return jdbcTemplate.queryForObject(sqlCount, Long.class);
+    }
+
+    /**
      * 获取当前值是否存在
      *
      * @param id id
      * @return true 存在 false 不存在
      */
-    private boolean getAchievementCount(final Long id) {
+    private boolean getAchievementCountById(final Long id) {
         boolean isTrue = true;
         final String sqlCount = "SELECT COUNT(1) FROM ACHIEVEMENT WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sqlCount, new Object[]{id}, Integer.class);

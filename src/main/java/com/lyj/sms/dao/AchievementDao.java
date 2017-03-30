@@ -47,4 +47,11 @@ public interface AchievementDao {
      */
     List<Achievement> getAchievementList(final Long userId);
 
+    /**
+     * 获取成绩个数.
+     *
+     * @return 成绩数
+     */
+    Long getAchievementCount();
+
 }
