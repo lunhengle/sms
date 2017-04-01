@@ -3,6 +3,7 @@ package com.lyj.sms.service;
 import com.lyj.sms.bean.Achievement;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 成绩service.
@@ -37,7 +38,7 @@ public interface AchievementService {
      * @param schoolYear 学年
      * @return 成绩列表
      */
-    List<Achievement> getAchievementList(final String schoolYear);
+    List<Map<String,Object>> getAchievementList(final String schoolYear);
     /**
      * 根据用户ID获取成绩.
      *

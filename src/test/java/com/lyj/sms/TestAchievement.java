@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 成绩测试.
@@ -42,7 +43,7 @@ public class TestAchievement {
      */
     @Test
     public void testGetAchievementList() {
-        List<Achievement> achievementList = achievementService.getAchievementList("");
+        List<Map<String,Object>> achievementList = achievementService.getAchievementList("");
         Assert.assertEquals(15, achievementList.size());
         achievementList = achievementService.getAchievementList("第三");
         Assert.assertEquals(5, achievementList.size());

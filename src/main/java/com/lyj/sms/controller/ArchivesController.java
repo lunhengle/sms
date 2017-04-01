@@ -3,6 +3,7 @@ package com.lyj.sms.controller;
 import com.lyj.sms.bean.Archives;
 import com.lyj.sms.constans.Constants;
 import com.lyj.sms.service.ArchivesService;
+import com.lyj.sms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 档案controller.
@@ -24,6 +26,11 @@ public class ArchivesController {
      */
     @Resource
     private ArchivesService archivesService;
+    /**
+     * 注入用户服务.
+     */
+    @Resource
+    private UserService userService;
 
     /**
      * 档案list.
@@ -34,7 +41,7 @@ public class ArchivesController {
      */
     @RequestMapping(value = "/listArchives", method = RequestMethod.GET)
     public String listArchives(@RequestParam(value = "schoolName", required = false) String schoolName, ModelMap modelMap) {
-        List<Archives> list = archivesService.getArchivesList(schoolName);
+        List<Map<String,Object>> list = archivesService.getArchivesList(schoolName);
         modelMap.put("list", list);
         modelMap.put("mapLevels", Constants.getMapLevels());
         return "archives/listArchivesPage";
@@ -54,6 +61,7 @@ public class ArchivesController {
             modelMap.put("archives", archives);
         }
         modelMap.put("mapLevels", Constants.getMapLevels());
+        modelMap.put("users", userService.getUserList(""));
         return "archives/editArchivesPage";
     }
 

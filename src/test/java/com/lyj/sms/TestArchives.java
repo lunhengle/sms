@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 测试档案.
@@ -42,7 +43,7 @@ public class TestArchives {
      */
     @Test
     public void testGetArchivesList() {
-        List<Archives> archivesList = archivesService.getArchivesList("");
+        List<Map<String,Object>> archivesList = archivesService.getArchivesList("");
         Assert.assertEquals(9, archivesList.size());
         archivesList = archivesService.getArchivesList("外国");
         Assert.assertEquals(3, archivesList.size());

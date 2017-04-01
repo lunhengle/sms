@@ -70,7 +70,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected Filter[] getServletFilters() {
-        //去掉也没有乱码 暂时注释掉 等到项目中出现错误了 在看看
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         //设置编码格式
         characterEncodingFilter.setEncoding("UTF-8");

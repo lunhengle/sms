@@ -40,6 +40,7 @@
                 <table width="100%" class="table table-striped table-bordered table-hover"
                        id="dataTables-example">
                     <tr>
+                        <th style="text-align: center">姓名</th>
                         <th style="text-align: center">学科</th>
                         <th style="text-align: center">学年</th>
                         <th style="text-align: center">成绩</th>
@@ -49,9 +50,10 @@
                     </tr>
                     <c:forEach items="${list}" var="list">
                         <tr>
-                            <td style="text-align: center">${list.subject}</td>
-                            <td style="text-align: center">${list.schoolYear}</td>
-                            <td style="text-align: center">${list.achievement}</td>
+                            <td style="text-align: center">${list.NAME}</td>
+                            <td style="text-align: center">${list.SUBJECT}</td>
+                            <td style="text-align: center">${list.SCHOOL_YEAR}</td>
+                            <td style="text-align: center">${list.ACHIEVEMENT}</td>
                             <td style="text-align: center">
                                 <c:forEach items="${mapLevels}" var="m">
                                     <c:if test="${m.key==list.levels}">
@@ -59,12 +61,12 @@
                                     </c:if>
                                 </c:forEach>
                             </td>
-                            <td style="text-align: center">${list.created}</td>
+                            <td style="text-align: center">${list.CREATED}</td>
                             <td style="text-align: center">
                                 <a class="btn btn-primary"
-                                   href="<%=basePath%>/achievement/editAchievement?id=${list.id}">修改</a>
+                                   href="<%=basePath%>/achievement/editAchievement?id=${list.ID}">修改</a>
                                 <a class="btn btn-danger"
-                                   href="<%=basePath%>/achievement/removeAchievement?id=${list.id}">删除</a>
+                                   href="<%=basePath%>/achievement/removeAchievement?id=${list.ID}">删除</a>
                             </td>
                         </tr>
                     </c:forEach>

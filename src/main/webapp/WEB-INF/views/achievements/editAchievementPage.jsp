@@ -23,6 +23,21 @@
                 <form class="form-horizontal" method="post" action="<%=basePath%>/achievement/saveAchievement">
                     <input type="hidden" id="id" name="id" value="${achievement.id}"/>
                     <div class="form-group">
+                        <label for="userId" class="col-sm-2 control-label">姓名<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="userId" name="userId" value="${achievement.userId}">
+                                <c:forEach items="${users}" var="user">
+                                    <c:if test="${user.id==achievement.userId}">
+                                        <option value="${user.id}" selected="selected">${user.name}</option>
+                                    </c:if>
+                                    <c:if test="${user.id!=achievement.userId}">
+                                        <option value="${user.id}">${user.name}</option>
+                                    </c:if>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="subject" class="col-sm-2 control-label">学科<span style="color: red">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="subject" name="subject"
@@ -63,10 +78,11 @@
                                 </c:choose>
                             </c:forEach>
                         </div>
-                        <div class="col-sm-offset-5">
-                            <input type="submit" class="btn btn-success" value="保存"/>
-                            <a href="<%=basePath%>/achievement/listAchievement" class="btn btn-default"/>返回</a>
-                        </div>
+                    </div>
+                    <div class="col-sm-offset-5">
+                        <input type="submit" class="btn btn-success" value="保存"/>
+                        <a href="<%=basePath%>/achievement/listAchievement" class="btn btn-default"/>返回</a>
+                    </div>
                 </form>
             </div>
         </div>

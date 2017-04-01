@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 档案dao实现类.
@@ -69,8 +70,8 @@ public class ArchivesDaoImpl implements ArchivesDao {
     @Override
     public void saveArchives(Archives archives) {
         if (null != archives.getId()) { //更新
-            final String sql = "UPDATE ARCHIVES SET COMMENTS = ?,GRADE = ?,LEVELS = ?,SCHOOL_ADDRESS = ?, SCHOOL_NAME = ?,TEACHER=? WHERE ID = ?";
-            jdbcTemplate.update(sql, new Object[]{archives.getComments(), archives.getGrade(), archives.getLevels(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getId()});
+            final String sql = "UPDATE ARCHIVES SET USER_ID = ?,COMMENTS = ?,GRADE = ?,LEVELS = ?,SCHOOL_ADDRESS = ?, SCHOOL_NAME = ?,TEACHER=? WHERE ID = ?";
+            jdbcTemplate.update(sql, new Object[]{archives.getUserId(), archives.getComments(), archives.getGrade(), archives.getLevels(), archives.getSchoolAddress(), archives.getSchoolName(), archives.getTeacher(), archives.getId()});
         } else { //插入
             long count = this.getArchivesCount();
             final String sql = "INSERT INTO ARCHIVES(ID,USER_ID,COMMENTS,GRADE,SCHOOL_ADDRESS,SCHOOL_NAME,TEACHER,LEVELS,CREATED)VALUES(?,?,?,?,?,?,?,?,?)";
@@ -96,18 +97,14 @@ public class ArchivesDaoImpl implements ArchivesDao {
      * @return 档案列表
      */
     @Override
-    public List<Archives> getArchivesList(String schoolName) {
-        String sql = "SELECT * FROM ARCHIVES WHERE 1 = 1 ";
+    public List<Map<String,Object>> getArchivesList(String schoolName) {
+        String sql = "SELECT a.*,u.NAME FROM ARCHIVES a ,USER u WHERE a.USER_ID = u.ID  ";
         Object[] objects = new Object[]{};
         if (null != schoolName && "" != schoolName) {
-            sql += " AND SCHOOL_NAME LIKE ? ";
+            sql += " AND a.SCHOOL_NAME LIKE ? ";
             objects = new Object[]{"%" + schoolName + "%"};
         }
-        return jdbcTemplate.query(sql, objects, new RowMapper<Archives>() {
-            public Archives mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return getMapRow(rs);
-            }
-        });
+        return jdbcTemplate.queryForList(sql, objects);
     }
 
     /**

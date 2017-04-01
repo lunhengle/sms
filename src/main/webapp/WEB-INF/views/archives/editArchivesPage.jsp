@@ -23,6 +23,21 @@
                 <form class="form-horizontal" method="post" action="<%=basePath%>/archives/saveArchives">
                     <input type="hidden" id="id" name="id" value="${archives.id}"/>
                     <div class="form-group">
+                        <label for="userId" class="col-sm-2 control-label">姓名<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="userId" name="userId" value="${archives.userId}">
+                                <c:forEach items="${users}" var="user">
+                                    <c:if test="${user.id==archives.userId}">
+                                        <option value="${user.id}" selected="selected">${user.name}</option>
+                                    </c:if>
+                                    <c:if test="${user.id!=archives.userId}">
+                                        <option value="${user.id}">${user.name}</option>
+                                    </c:if>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="schoolName" class="col-sm-2 control-label">学校名称<span
                                 style="color: red">*</span></label>
                         <div class="col-sm-10">
@@ -79,6 +94,7 @@
                             <input type="submit" class="btn btn-success" value="保存"/>
                             <a href="<%=basePath%>/archives/listArchives" class="btn btn-default"/>返回</a>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

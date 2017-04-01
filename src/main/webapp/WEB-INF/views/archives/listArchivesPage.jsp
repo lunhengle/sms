@@ -40,6 +40,7 @@
                 <table width="100%" class="table table-striped table-bordered table-hover"
                        id="dataTables-example">
                     <tr>
+                        <th style="text-align: center">姓名</th>
                         <th style="text-align: center">学校名称</th>
                         <th style="text-align: center">老师</th>
                         <th style="text-align: center">年级</th>
@@ -50,9 +51,10 @@
                     </tr>
                     <c:forEach items="${list}" var="list">
                         <tr>
-                            <td>${list.schoolName}</td>
-                            <td style="text-align: center">${list.teacher}</td>
-                            <td style="text-align: center">${list.grade}</td>
+                            <td>${list.NAME}</td>
+                            <td>${list.SCHOOL_NAME}</td>
+                            <td style="text-align: center">${list.TEACHER}</td>
+                            <td style="text-align: center">${list.GRADE}</td>
                             <td style="text-align: center">
                                 <c:forEach items="${mapLevels}" var="m">
                                     <c:if test="${m.key==list.levels}">
@@ -60,13 +62,13 @@
                                     </c:if>
                                 </c:forEach>
                             </td>
-                            <td>${list.schoolAddress}</td>
-                            <td style="text-align: center">${list.created}</td>
+                            <td>${list.SCHOOL_ADDRESS}</td>
+                            <td style="text-align: center">${list.CREATED}</td>
                             <td style="text-align: center">
                                 <a class="btn btn-primary"
-                                   href="<%=basePath%>/archives/editArchives?id=${list.id}">修改</a>
+                                   href="<%=basePath%>/archives/editArchives?id=${list.ID}">修改</a>
                                 <a class="btn btn-danger"
-                                   href="<%=basePath%>/archives/removeArchives?id=${list.id}">删除</a>
+                                   href="<%=basePath%>/archives/removeArchives?id=${list.ID}">删除</a>
                             </td>
                         </tr>
                     </c:forEach>

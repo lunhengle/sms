@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 成绩service实现类.
@@ -58,7 +59,7 @@ public class AchievementServiceImpl implements AchievementService {
      * @return 成绩列表
      */
     @Override
-    public List<Achievement> getAchievementList(String schoolYear) {
+    public List<Map<String,Object>> getAchievementList(String schoolYear) {
         return achievementDao.getAchievementList(schoolYear);
     }
 

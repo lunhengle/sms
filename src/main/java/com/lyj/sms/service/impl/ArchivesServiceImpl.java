@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 档案service.
@@ -58,7 +59,7 @@ public class ArchivesServiceImpl implements ArchivesService {
      * @return 档案列表
      */
     @Override
-    public List<Archives> getArchivesList(String name) {
+    public List<Map<String,Object>> getArchivesList(String name) {
         return archivesDao.getArchivesList(name);
     }
 

@@ -3,6 +3,7 @@ package com.lyj.sms.controller;
 import com.lyj.sms.bean.Achievement;
 import com.lyj.sms.constans.Constants;
 import com.lyj.sms.service.AchievementService;
+import com.lyj.sms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 成绩Controller.
@@ -24,6 +26,11 @@ public class AchievementController {
      */
     @Resource
     private AchievementService achievementService;
+    /**
+     * 注入用户服务.
+     */
+    @Resource
+    private UserService userService;
 
     /**
      * 得到成绩列表.
@@ -34,7 +41,7 @@ public class AchievementController {
      */
     @RequestMapping(value = "/listAchievement", method = RequestMethod.GET)
     public String listAchievement(@RequestParam(value = "schoolYear", required = false) String schoolYear, ModelMap modelMap) {
-        List<Achievement> list = achievementService.getAchievementList(schoolYear);
+        List<Map<String,Object>> list = achievementService.getAchievementList(schoolYear);
         modelMap.put("list", list);
         modelMap.put("mapLevels", Constants.getMapLevels());
         return "achievements/listAchievementPage";
@@ -54,6 +61,7 @@ public class AchievementController {
             modelMap.put("achievement", achievement);
         }
         modelMap.put("mapLevels", Constants.getMapLevels());
+        modelMap.put("users", userService.getUserList(""));
         return "achievements/editAchievementPage";
     }
 

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 成绩dao实现类.
@@ -52,8 +53,8 @@ public class AchievementDaoImpl implements AchievementDao {
     @Override
     public void saveAchievement(Achievement achievement) {
         if (null != achievement.getId()) { //更新
-            final String sql = "UPDATE ACHIEVEMENT SET ACHIEVEMENT = ?,LEVELS = ?,SCHOOL_YEAR = ?, SUBJECT = ? WHERE ID = ?";
-            jdbcTemplate.update(sql, new Object[]{achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), achievement.getId()});
+            final String sql = "UPDATE ACHIEVEMENT SET USER_ID = ?, ACHIEVEMENT = ?,LEVELS = ?,SCHOOL_YEAR = ?, SUBJECT = ? WHERE ID = ?";
+            jdbcTemplate.update(sql, new Object[]{achievement.getUserId(), achievement.getAchievement(), achievement.getLevels(), achievement.getSchoolYear(), achievement.getSubject(), achievement.getId()});
         } else { //插入
             long count = this.getAchievementCount();
             final String sql = "INSERT INTO ACHIEVEMENT(ID,USER_ID,ACHIEVEMENT,LEVELS,SCHOOL_YEAR,SUBJECT,CREATED)VALUES(?,?,?,?,?,?,?)";
@@ -80,18 +81,14 @@ public class AchievementDaoImpl implements AchievementDao {
      * @return 成绩列表
      */
     @Override
-    public List<Achievement> getAchievementList(String schoolYear) {
-        String sql = "SELECT * FROM ACHIEVEMENT WHERE 1 = 1 ";
+    public List<Map<String, Object>> getAchievementList(String schoolYear) {
+        String sql = "SELECT a.*,u.NAME FROM ACHIEVEMENT a,USER u WHERE a.USER_ID=u.ID ";
         Object[] objects = new Object[]{};
         if (null != schoolYear && "" != schoolYear) {
-            sql += " AND SCHOOL_YEAR LIKE ? ";
+            sql += " AND a.SCHOOL_YEAR LIKE ? ";
             objects = new Object[]{"%" + schoolYear + "%"};
         }
-        return jdbcTemplate.query(sql, objects, new RowMapper<Achievement>() {
-            public Achievement mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return getMapRow(rs);
-            }
-        });
+        return jdbcTemplate.queryForList(sql, objects);
     }
 
     /**

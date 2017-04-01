@@ -3,6 +3,7 @@ package com.lyj.sms.dao;
 import com.lyj.sms.bean.Archives;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 档案dao.
@@ -37,7 +38,7 @@ public interface ArchivesDao {
      * @param schoolName 学校名
      * @return 档案列表
      */
-    List<Archives> getArchivesList(final String schoolName);
+    List<Map<String,Object>> getArchivesList(final String schoolName);
 
     /**
      * 根据用户ID 获取档案信息.
