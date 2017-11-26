@@ -7,6 +7,7 @@
     <groupId>com.lyj.sms</groupId>
     <artifactId>sms</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <properties>
         <spring-version>4.2.6.RELEASE</spring-version>
         <junit-version>4.11</junit-version>
