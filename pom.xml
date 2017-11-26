@@ -163,8 +163,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
                     <warName>${project.build.name}</warName>
+                    <webXml>com.lyj.sms.config.WebAppInitializer</webXml>
+                    <warSourceDirectory>webapp</warSourceDirectory>
                 </configuration>
             </plugin>
             <plugin>
