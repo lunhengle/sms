@@ -190,7 +190,7 @@
                                     <type>${project.packaging}</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory>${target.dir}</outputDirectory>
                             <includes>
                                 <include>*.war</include>
                             </includes>
