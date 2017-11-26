@@ -19,7 +19,6 @@
         <jackson-version>2.3.0</jackson-version>
         <project.build.name>sms</project.build.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <target.dir>D:\迅雷下载</target.dir>
     </properties>
     <dependencies>
         <!--spring 基础包 start-->
@@ -190,7 +189,7 @@
                                     <type>${project.packaging}</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${target.dir}</outputDirectory>
+                            <outputDirectory>${target.dir}/${target.version}</outputDirectory>
                             <includes>
                                 <include>*.war</include>
                             </includes>
