@@ -166,7 +166,7 @@
                 <version>2.2</version>
                 <configuration>
                     <warName>${project.build.name}</warName>
-                    <webXml>com.lyj.sms.config.WebAppInitializer</webXml>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                     <warSourceDirectory>webapp</warSourceDirectory>
                 </configuration>
             </plugin>
